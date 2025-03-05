@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mermaid Diagram Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Include Mermaid JS from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    // Initialize Mermaid to render diagrams on page load
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="container mx-auto">
+    <h1 class="text-3xl font-bold mb-4">Mermaid Diagram Generator</h1>
+    <form action="/generate" method="post" class="mb-4">
+      <div class="mb-4">
+        <label class="block text-gray-700">Diagram Description:</label>
+        <textarea name="prompt" class="w-full p-2 border border-gray-300 rounded" rows="4" placeholder="Describe the diagram you want to generate..."></textarea>
+      </div>
+      <div class="mb-4">
+        <label class="block text-gray-700">Diagram Type:</label>
+        <select name="diagram_type" class="w-full p-2 border border-gray-300 rounded">
+          <option value="flowchart">Flowchart</option>
+          <option value="sequenceDiagram">Sequence Diagram</option>
+          <option value="classDiagram">Class Diagram</option>
+          <option value="stateDiagram">State Diagram</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Generate Diagram</button>
+    </form>
+    {% if result %}
+    <div class="bg-white p-4 rounded shadow mb-4">
+      <h2 class="text-xl font-bold mb-2">Generated Diagram (Code):</h2>
+      <pre class="bg-gray-200 p-2 rounded">{{ result }}</pre>
+    </div>
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Diagram Visualization:</h2>
+      <!-- Mermaid container: Mermaid JS will render this as a diagram -->
+      <div class="mermaid">
+        {{ result }}
+      </div>
+    </div>
+    {% elif error %}
+    <div class="bg-red-200 p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Error:</h2>
+      <p>{{ error }}</p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
