@@ -56,3 +56,9 @@ INFO:     Started server process [XXXX]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 ```
+
+## Licensing
+
+All packages in this repository are open-source software and licensed under the **MIT License**. By contributing to this repository, you agree to release your code under this license as well.
+
+Let's build the future of *Natural Language to Mermaid Diagram Generator* together!
